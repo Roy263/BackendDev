@@ -1,0 +1,26 @@
+AWSTemplateFormatversion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+	app
+	
+	Sample SAM Template for app
+
+Globals:
+	Function:
+		Timeout:600
+
+Resources:
+	TestFunction:
+		Type: AWS::Serverless::Function
+		Properties:
+			PackageType: Image
+			Architectures:
+				-x86_64
+		Metadata:
+			Dockerfile: Dockerfile.test
+			DockerContext: ./
+			DockerTag: python3.9-v1
+Outputs:
+	TestFunction:
+		Description: "test aws lambda function"
+		Value: !GetAtt TestFunction.Arn
