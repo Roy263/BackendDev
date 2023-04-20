@@ -1,0 +1,9 @@
+FROM public.ecr.aws/lambda/python:3.9
+ 
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+COPY utils.py ./
+COPY config.json ./
+COPY kafka_modules ./kafka_modules
+COPY mongoTransaction.py ./
+CMD ["test.lambda_handler"]
